@@ -1,0 +1,10 @@
+{
+  "name": "speedwork",
+  "version": "1",
+  "description": "Web application dependencies",
+  "directory": "public/static",
+  "dependencies": {
+    "jquery-ui": "~1.11.4",
+    "nprogress" : "~0.2.0"
+  }
+}
