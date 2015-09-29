@@ -11,12 +11,10 @@
 
 namespace App;
 
-use Configure;
-use Controller;
-use Registry;
-use Router;
-use Session;
-use Utility;
+use Speedwork\Config\Configure;
+use Speedwork\Core\Controller;
+use Speedwork\Core\Di;
+use Speedwork\Core\Registry;
 
 /**
  * Application Controller will be called on every request.
@@ -25,43 +23,26 @@ use Utility;
  *
  * @author sankar <sankar.suda@gmail.com>
  */
-class AppController extends Controller
+class AppController extends Di
 {
     public function beforeRender()
     {
         $is_api_request = Registry::get('is_api_request');
 
-        Registry::set('FindHelpers', ['find']);
-        Registry::set('SaveHelpers', ['save']);
-        Registry::set('DeleteHelpers', ['delete']);
-        Registry::set('UpdateHelpers', ['update']);
-
-        if ($is_api_request != true) {
-            $this->loadForWeb();
-            $this->events();
-
-            $components = Configure::read('components');
-            if (empty($components)) {
-                $components = [
-                    '' => ['sms', 'send'],
-                ];
-            }
-
-            //$this->assign('component', $components[$this->option]);
-
-            $theme_modules = [
-                'header'  => [['option' => 'menu', 'menu' => 'adminmenu']],
-                'header2' => [['option' => 'menu', 'view' => 'shortmenu']],
-            ];
-
-            Configure::write('theme_modules', $theme_modules);
-
-            // force password change for weak and older than 30 days
-            $password_change = Session::read('password_change_required');
-            if ($password_change === 1 && !in_array($this->view, ['changepass','login'])) {
-                Utility::redirect(Router::link('index.php?option=members&view=changepass'));
-            }
+        if ($is_api_request) {
+            return true;
         }
+
+        $this->loadForWeb();
+
+        $components = Configure::read('components');
+        if (empty($components)) {
+            $components = [
+                '' => ['content', 'welcome'],
+            ];
+        }
+
+        $this->assign('component', $components[$this->option]);
     }
 
     public function index()
@@ -70,58 +51,22 @@ class AppController extends Controller
 
     private function loadForWeb()
     {
-        // for setting the date and time
-        $this->assign('time', date('l, d M Y, h:i A'));
+        $this->get('resolver')->widget('bootstrap');
+        $this->get('resolver')->widget('noty');
+        $this->get('resolver')->widget('nprogress');
+        $this->get('resolver')->widget('qtip');
 
-        $this->application->widget('jui.sortable');
-        $this->application->widget('jui.draggable');
-        $this->application->widget('jui.droppable');
+        $this->get('template')->styleSheet('animate.css/animate.min.css', 'bower');
+        $this->get('template')->styleSheet('font-awsome/css/font-awesome.min.css', 'bower');
+        $this->get('template')->styleSheet('ionicons/css/ionicons.min.css', 'bower');
+        $this->get('template')->styleSheet('metisMenu/dist/metisMenu.min.css', 'bower');
 
-        $this->application->widget('jui.autocomplete');
-
-        $this->application->widget('noty');
-        $this->application->widget('nprogress');
-        $this->application->widget('qtip', [
-            'selector' => '[data-title]',
-            'options'  => [
-                'content' => ['attr' => 'data-title'],
-                ],
-            ]
-        );
-
-        $this->application->widget('jui.daterangepicker', [
-            'selector' => '.ac-daterange',
-            'options'  => [
-                'dateFormat'   => 'd/m/yy',
-                'earliestDate' => 'Today-90',
-                'latestDate'   => 'Today',
-                ],
-            ]
-        );
-
-        $this->assign('this', $this);
-        $this->template->addScriptUrl(_PUBLIC.'script.js?v=1');
-        $this->template->addScriptUrl(_PUBLIC.'time.js?v=1');
-
-        $flash = Session::flash();
-        $this->assign('flash', $flash);
-
-        $html  = '<script>';
-        $html .= 'var flash = '.json_encode($flash).';';
-        $html .= '</script>';
-
-        $this->template->addCustomTag($html, 'header');
+        $this->assign('flash', $this->session->getFlashBag()->get('flash'));
 
         $environment = Configure::read('environment');
         if ($environment == 'prod' && Configure::read('google_analytics')) {
-            $google = $this->application->helper('Ga');
+            $google = $this->get('resolver')->helper('Ga');
             $google->add(Configure::read('google_analytics'));
         }
-    }
-
-    private function events()
-    {
-        $events = $this->application->helper('events');
-        $events->attach();
     }
 }

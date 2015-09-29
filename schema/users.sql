@@ -231,7 +231,7 @@ CREATE TABLE IF NOT EXISTS `speed_user_social_providers` (
 
 INSERT INTO `speed_user_social_providers` (`provider_id`, `provider`, `title`, `meta_config`, `options`, `is_default`, `status`, `created`, `modified`) VALUES
 (1, 'Facebook', 'Facebook', '{"keys":{"id":"115253708549245","secret":"25bd954432ae11b078ad2499ee2783a2"},"scope":"email,publish_actions,offline_access,read_stream,publish_stream"}', '{"post":"1"}', 1, 1, 0, 0),
-(2, 'Google', 'Google', '{"keys":{"id":"1083807244832-ea71p861h1iuc7qtvh066ei0oli49saq.apps.googleusercontent.com","secret":"1tYmqriCP4bcN7Wu5uPYxW8S"},"scope":"https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email","access_type":"offline","approval_prompt":"force"}', '{"class":"google"}', 0, 1, 0, 0),
+(2, 'Google', 'Google', '{"keys":{"id":"1083807244832-ea71p861h1iuc7qtvh066ei0oli49saq.apps.googleusercontent.com","secret":"1tYmqriCP4bcN7Wu5uPYxW8S"},"scope":"https://www.googleapis.com/auth/acl.profile https://www.googleapis.com/auth/acl.email","access_type":"offline","approval_prompt":"force"}', '{"class":"google"}', 0, 1, 0, 0),
 (3, 'Twitter', 'Twitter', '{"keys":{"key":"Zc8FasMhxheOL3EM6SZq7qNc0","secret":"UHxrAQRk416CdGMj6WMC7POMmrsmyMk3a9SMvPSDHN1lpUdbow"}}', '{"post":"1"}', 0, 0, 0, 0);
 
 -- --------------------------------------------------------

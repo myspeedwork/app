@@ -1,26 +1,15 @@
 <?php
-/**
- * =======================================
- * ###################################
- * SpeedWork Framework
- *
- *
- * PHP versions 5.2 or above
- *
- * @package		com_books
- * @author		Logics Inc.(http://www.logicsinc.in)
- * @copyright	Copyright (c) 20011-2020, Logics Inc.
- * @license		http://www.logicsinc.in/license
- * @link		http://www.logicsinc.in
- * @version		0.1
- * @data		Mar 2012
- * @filesource
- * ###################################
- * =======================================
- */
 
+/**
+ * This file is part of the Speedwork package.
+ *
+ * (c) 2s Technologies <info@2stechno.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 require 'startup.php';
 
 //render the template
-$template->renderTemplate();
+$di['template']->renderTemplate();
 exit;

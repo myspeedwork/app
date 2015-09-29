@@ -1,5 +1,0 @@
-.container {width: 100% !important}
-.list-group-float {padding: 7px 10px !important}
-.list-group-float .list-group-item{float:left !important; width:200px;}
-.list-group-float .list-group-item:first-child {border-radius:0px !important; }
-.list-group-float .list-group-item:last-child {border-radius:0px !important; }

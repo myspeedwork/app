@@ -10,12 +10,12 @@
  */
 require dirname(__FILE__).'/../startup.php';
 
-$request    = Speedwork\Api\RestUtils::processRequest();
-$restApi    = new RestApi();
+$request = Speedwork\Util\RestUtils::processRequest();
+$restApi = new Speedwork\Core\RestApi();
 
 /*
   * Process request
   * @param array $request
   * @param boolean $authenicate (optional) default|true
   **/
-$restApi->processMethod($request, true, ['misc']);
+$restApi->setRequest($request)->processMethod();

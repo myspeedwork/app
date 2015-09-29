@@ -1,7 +1,7 @@
 {
   "name": "speedwork/app",
   "type": "application",
-  "description": "An Application",
+  "description": "A Speedwork Application",
   "license": "MIT",
   "authors": [
     {
@@ -9,13 +9,12 @@
       "email": "sankar.suda@gmail.com"
     }
   ],
+  "minimum-stability" : "dev",
   "config": {
     "bin-dir": "bin"
   },
   "require": {
     "php": ">=5.4",
-    "smarty/smarty": "~3.1",
-    "phpmailer/phpmailer": "dev-master",
-    "piwik/device-detector": "dev-master"
+    "speedwork/framework" : "dev-master"
   }
 }

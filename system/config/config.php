@@ -7,23 +7,24 @@ $_config['public_permissions'] = [
 ];
 
 $_config['mail'] = [
-    'enable'     => false,
+    'enable'     => true,
     'blacklist'  => false,
-    'from_name'  => 'Speedwork',
-    'from_email' => 'no-reply@speedwork.com',
+    'from_name'  => $_config['app.name'],
+    'from_email' => 'xxx',
     'log'        => true,
-    'smtp'       => false,
-    'mail_host'  => 'xxxx',
-    'mail_port'  => '2525',
-    'mail_user'  => 'xxxx',
-    'mail_pass'  => 'xxxx',
+    'provider'   => 'phpmailer',
+    'phpmailer'  => [
+        'smtp'      => true,
+        'mail_host' => 'smtp.sendgrid.net',
+        'mail_port' => '2525',
+        'mail_user' => 'xxx',
+        'mail_pass' => 'xxx',
+    ],
 ];
 
 $_config['datesettings']['timezone'] = 'Asia/Calcutta';
 
-Configure::write('members.login_fields', ['username']);
-
-$_config['members']['login_fields']               = ['username'];
+$_config['members.login_fields']                  = ['username'];
 $_config['members']['default_user_group']         = 3;
 $_config['members']['enable_online_registration'] = true;
 $_config['members']['activation']                 = false;
