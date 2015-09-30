@@ -17,16 +17,12 @@ $paths = [
     '/../../speedwork/framework',
 ];
 
-$exits = false;
 foreach ($paths as $path) {
     if (file_exists($startup = APP.$path.DS.'startup.php')) {
         defined('SYS') or define('SYS', realpath(APP.$path).DS);
-        require $startup;
-        $exits = true;
-        break;
+
+        return require $startup;
     }
 }
 
-if (!$exits) {
-    die('System start up not loaded');
-}
+die('System start up not loaded');

@@ -8,8 +8,5 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-require 'startup.php';
-
-//render the template
-$di['template']->renderTemplate();
-exit;
+$app = require 'startup.php';
+$app->run();
