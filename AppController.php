@@ -3,7 +3,7 @@
 /**
  * This file is part of the Speedwork package.
  *
- * (c) 2s Technologies <info@2stech.com>
+ * @link http://github.com/speedwork
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -51,15 +51,21 @@ class AppController extends Di
 
     private function loadForWeb()
     {
+        $this->get('resolver')->widget('speedwork.jquery');
+        $this->get('resolver')->widget('speedwork.metis');
+        $this->get('resolver')->widget('speedwork');
         $this->get('resolver')->widget('bootstrap');
         $this->get('resolver')->widget('noty');
         $this->get('resolver')->widget('nprogress');
         $this->get('resolver')->widget('qtip');
-
-        $this->get('template')->styleSheet('animate.css/animate.min.css', 'bower');
-        $this->get('template')->styleSheet('font-awsome/css/font-awesome.min.css', 'bower');
-        $this->get('template')->styleSheet('ionicons/css/ionicons.min.css', 'bower');
-        $this->get('template')->styleSheet('metisMenu/dist/metisMenu.min.css', 'bower');
+        $this->get('resolver')->widget('moment');
+        $this->get('resolver')->widget('chosen');
+        $this->get('resolver')->widget('jui.autocomplete');
+        $this->get('resolver')->widget('jui.sortable');
+        $this->get('resolver')->widget('jui.draggable');
+        $this->get('resolver')->widget('jui.droppable');
+        $this->get('resolver')->widget('fontAwsome');
+        $this->get('resolver')->widget('IonicIcons');
 
         $this->assign('flash', $this->session->getFlashBag()->get('flash'));
 
