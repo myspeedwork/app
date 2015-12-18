@@ -114,7 +114,7 @@ DirectoryIndex index.php index.html index.htm
 	RewriteBase /
 
 	RewriteRule ^sitemap.xml$ index.php?option=feed&view=sitemap [L]
-	RewriteRule ^googlebase.xml$ index.php?option=feed&view=google_base [L]
+	RewriteRule ^googlebase.xml$ index.php?option=feed&view=googlebase [L]
 
 	RewriteCond %{REQUEST_FILENAME} !\.(png|gif|ico|swf|jpe?g|js|css|xml|wav|mp3|pdf|feed)$
 	RewriteCond %{REQUEST_FILENAME} !-f

@@ -11,10 +11,11 @@
   ],
   "minimum-stability" : "dev",
   "config": {
-    "bin-dir": "bin"
+    "no-dev": true,
+    "optimize-autoloader" : true
   },
   "require": {
-    "php": ">=5.4",
+    "php": ">=5.5",
     "speedwork/framework" : "dev-master"
   }
 }

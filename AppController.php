@@ -11,10 +11,8 @@
 
 namespace App;
 
-use Speedwork\Config\Configure;
 use Speedwork\Core\Controller;
 use Speedwork\Core\Di;
-use Speedwork\Core\Registry;
 
 /**
  * Application Controller will be called on every request.
@@ -27,22 +25,19 @@ class AppController extends Di
 {
     public function beforeRender()
     {
-        $is_api_request = Registry::get('is_api_request');
+        $this->set('database.helpers.find', ['find']);
+        $this->set('database.helpers.save', ['save']);
+        $this->set('database.helpers.delete', ['delete']);
+        $this->set('database.helpers.update', ['update']);
+
+        $is_api_request = $this->get('is_api_request');
 
         if ($is_api_request) {
             return true;
         }
 
         $this->loadForWeb();
-
-        $components = Configure::read('components');
-        if (empty($components)) {
-            $components = [
-                '' => ['content', 'welcome'],
-            ];
-        }
-
-        $this->assign('component', $components[$this->option]);
+        //$this->noty();
     }
 
     public function index()
@@ -51,28 +46,67 @@ class AppController extends Di
 
     private function loadForWeb()
     {
-        $this->get('resolver')->widget('speedwork.jquery');
-        $this->get('resolver')->widget('speedwork.metis');
-        $this->get('resolver')->widget('speedwork');
-        $this->get('resolver')->widget('bootstrap');
-        $this->get('resolver')->widget('noty');
+        // for setting the date and time
+        $this->assign('time', date('l, d M Y, h:i A'));
+        $this->assign('year', date('Y'));
+
+        $this->get('resolver')->helper('events')->attach();
+        $this->get('resolver')->helper('metainfo')->index();
+
+        $components = config('app.components');
+        if (empty($components)) {
+            $components = [
+                '' => ['content', 'welcome'],
+            ];
+        }
+
+        $this->assign('component', $components[$this->option]);
+
         $this->get('resolver')->widget('nprogress');
+        $this->get('resolver')->widget('speedwork.jquery');
+        $this->get('resolver')->widget('bootstrap');
+        $this->get('resolver')->widget('speedwork');
+        $this->get('resolver')->widget('noty');
         $this->get('resolver')->widget('qtip');
-        $this->get('resolver')->widget('moment');
-        $this->get('resolver')->widget('chosen');
         $this->get('resolver')->widget('jui.autocomplete');
         $this->get('resolver')->widget('jui.sortable');
         $this->get('resolver')->widget('jui.draggable');
         $this->get('resolver')->widget('jui.droppable');
         $this->get('resolver')->widget('fontAwsome');
         $this->get('resolver')->widget('IonicIcons');
+        $this->get('resolver')->widget('speedwork.metis');
 
-        $this->assign('flash', $this->session->getFlashBag()->get('flash'));
+        $app = config('app');
 
-        $environment = Configure::read('environment');
-        if ($environment == 'prod' && Configure::read('google_analytics')) {
+        //add some extra meta tags
+        $this->get('template')->setMetaData('robots', 'index, follow');
+
+        //open graph data
+        $this->get('template')->setMetaData('og:country-name', 'India', 'property');
+        $this->get('template')->setMetaData('og:site_name', $app['name'], 'property');
+        $this->get('template')->setMetaData('og:url', _URL, 'property');
+        $this->get('template')->setMetaData('og:image', $this->themeimages.'social.png', 'property');
+        $this->get('template')->setMetaData('og:title', $app['title'], 'property');
+        $this->get('template')->setMetaData('og:description', $app['descn'], 'property');
+        $this->get('template')->setMetaData('og:type', 'product', 'property');
+
+        $this->get('template')->setMetaData('twitter:card', 'summary_large_image', 'property');
+        $this->get('template')->setMetaData('twitter:image', $this->themeimages.'social.png', 'property');
+        $this->get('template')->setMetaData('twitter:title', $app['title'], 'property');
+        $this->get('template')->setMetaData('twitter:description', $app['descn'], 'property');
+        $this->get('template')->setMetaData('twitter:site', '@'.$app['name'], 'property');
+
+        $environment = $app['env'];
+        if ($environment == 'prod' && $app['analytics']) {
             $google = $this->get('resolver')->helper('Ga');
-            $google->add(Configure::read('google_analytics'));
+            $google->add($app['analytics']);
         }
+    }
+
+    public function noty()
+    {
+        $noty = $this->get('resolver')->helper('notify.noty');
+        $this->set('noty', $noty);
+        $this->assign('noty_unread', $noty->unreadCount());
     }
 }
