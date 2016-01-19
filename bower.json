@@ -1,27 +1,14 @@
 {
-  "name": "ewellness",
+  "name": "speedwork/app",
   "version": "v1.0.0",
   "description": "Web application dependencies",
   "dependencies": {
       "ionicons":"~2.0.1",
-      "bootstrap-touchspin":"~3.0.3",
       "nprogress":"~0.2.0",
       "animate.css":"~3.4.0",
-      "bootstrap-tokenfield":"~0.12.1",
       "font-awsome":"~4.4.0",
-      "bootstrap-daterangepicker":"~2.1.13",
-      "eonasdan-bootstrap-datetimepicker":"~4.17.37",
-      "chosen":"~1.4.2",
-      "flexslider":"~2.5.0",
-      "Jcrop":"~2.0.4",
       "metisMenu":"~2.1.0",
-      "livestampjs":"~1.1.2",
       "jquery":"~2.1.4",
-      "raty":"~2.7.0",
-      "slimScroll":"~1.3.7",
-      "tinymce":"~4.1.10",
-      "moment-timezone":"~0.4.1",
-      "moment":"~2.10.6",
       "bootstrap":"~3.3.5"
   }
 }

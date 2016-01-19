@@ -1,17 +1,18 @@
 <?php
 
-$_config = [];
-
-$_config['power']   = true;
-$_config['salting'] = true;
-
-$_config['permissions']['public'] = [
-    'include' => [
-        'home:**',
-        'content:**',
+return [
+    'power'       => true,
+    'salting'     => true,
+    'firewall'    => '', //Prefix for the permissions
+    'permissions' => [
+        'public' => [
+            'include' => [
+                'home:**',
+                'content:**',
+            ],
+            'exclude' => [],
+        ],
     ],
-    'exclude' => [],
-];
 
 /*
  * Members configuration.
@@ -27,29 +28,27 @@ $_config['permissions']['public'] = [
  * account.login_fields - Database fields which are used to login to this account
  * account.auto_increment_userid - Use auto auto_increment_userid insted of random 10 digits userid
  */
-
-$_config['account'] = [
-    'enable_online_registration' => true,
-    'default_user_group'         => 5,
-    'auto_increment_userid'      => false,
-    'activation'                 => true,
-    'sms_activation'             => false,
-    'email_activation'           => true, // enable activate account
-    'activation_set_password'    => false,
-    'login_fields'               => ['username', 'email'],
-    'social'                     => [
-        'enable'  => false,
-        'publish' => false,
-        'login'   => false,
+    'account' => [
+        'enable_online_registration' => true,
+        'default_user_group'         => 5,
+        'auto_increment_userid'      => false,
+        'activation'                 => true,
+        'sms_activation'             => false,
+        'email_activation'           => true, // enable activate account
+        'activation_set_password'    => false,
+        'login_fields'               => ['username', 'email'],
+        'social'                     => [
+            'enable'  => false,
+            'publish' => false,
+            'login'   => false,
+        ],
+        'login_filters' => [
+            'username' => ["/^[a-zA-Z0-9\.\-_]{6,25}$/"],
+            'email'    => ["/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix"],
+            'mobile'   => ['/[789][0-9]{9}/'],
+        ],
+        'onlogin'  => 'account',
+        'onlogout' => '',
+        'guest'    => 'members/login',
     ],
-    'login_filters' => [
-        'username' => ["/^[a-zA-Z0-9\.\-_]{6,25}$/"],
-        'email'    => ["/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix"],
-        'mobile'   => ['/[789][0-9]{9}/'],
-    ],
-    'onlogin'  => 'account',
-    'onlogout' => '',
-    'guest'    => 'members/login',
 ];
-
-return $_config;

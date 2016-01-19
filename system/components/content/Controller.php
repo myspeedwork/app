@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Components\Content;
+namespace System\Components\Content;
 
 use Speedwork\Core\Controller as BaseController;
 

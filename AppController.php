@@ -25,11 +25,6 @@ class AppController extends Di
 {
     public function beforeRender()
     {
-        $this->set('database.helpers.find', ['find']);
-        $this->set('database.helpers.save', ['save']);
-        $this->set('database.helpers.delete', ['delete']);
-        $this->set('database.helpers.update', ['update']);
-
         $is_api_request = $this->get('is_api_request');
 
         if ($is_api_request) {
@@ -62,16 +57,12 @@ class AppController extends Di
 
         $this->assign('component', $components[$this->option]);
 
-        $this->get('resolver')->widget('nprogress');
         $this->get('resolver')->widget('speedwork.jquery');
+        $this->get('resolver')->widget('nprogress');
         $this->get('resolver')->widget('bootstrap');
         $this->get('resolver')->widget('speedwork');
         $this->get('resolver')->widget('noty');
         $this->get('resolver')->widget('qtip');
-        $this->get('resolver')->widget('jui.autocomplete');
-        $this->get('resolver')->widget('jui.sortable');
-        $this->get('resolver')->widget('jui.draggable');
-        $this->get('resolver')->widget('jui.droppable');
         $this->get('resolver')->widget('fontAwsome');
         $this->get('resolver')->widget('IonicIcons');
         $this->get('resolver')->widget('speedwork.metis');
@@ -82,7 +73,6 @@ class AppController extends Di
         $this->get('template')->setMetaData('robots', 'index, follow');
 
         //open graph data
-        $this->get('template')->setMetaData('og:country-name', 'India', 'property');
         $this->get('template')->setMetaData('og:site_name', $app['name'], 'property');
         $this->get('template')->setMetaData('og:url', _URL, 'property');
         $this->get('template')->setMetaData('og:image', $this->themeimages.'social.png', 'property');

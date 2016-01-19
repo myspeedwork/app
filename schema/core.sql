@@ -2,19 +2,6 @@
 -- --------------------------------------------------------
 
 --
--- Table structure for table `speed_core_cache`
---
-
-CREATE TABLE IF NOT EXISTS `speed_core_cache` (
-`cacheid` bigint(20) unsigned NOT NULL,
-  `cache_key` varchar(256) NOT NULL,
-  `cache_data` text NOT NULL,
-  `expire_time` int(10) unsigned NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `speed_core_components`
 --
 
@@ -60,20 +47,6 @@ CREATE TABLE IF NOT EXISTS `speed_core_menu_types` (
   `title` varchar(255) NOT NULL DEFAULT '',
   `descn` varchar(255) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `speed_core_options`
---
-
-CREATE TABLE IF NOT EXISTS `speed_core_options` (
-`option_id` int(11) unsigned NOT NULL,
-  `option_name` varchar(100) NOT NULL,
-  `option_value` mediumtext,
-  `autoload` varchar(5) NOT NULL,
-  `fksiteid` int(11) unsigned NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 

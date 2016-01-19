@@ -15,6 +15,7 @@ defined('APP') or define('APP', ABSPATH);
 $paths = [
     'speedwork',
     '/../../speedwork/framework',
+    'vendor/speedwork/framework',
 ];
 
 foreach ($paths as $path) {
