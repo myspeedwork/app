@@ -6,17 +6,32 @@
 --
 
 CREATE TABLE IF NOT EXISTS `speed_core_components` (
-`component_id` int(11) unsigned NOT NULL,
+  `id` int(11) unsigned NOT NULL,
   `hasconfig` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `title` varchar(100) NOT NULL,
-  `component` varchar(50) NOT NULL,
-  `com_view` varchar(50) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `display_name` varchar(50) NOT NULL,
+  `config` text NOT NULL,
   `is_admin` tinyint(1) unsigned NOT NULL,
   `status` tinyint(1) unsigned NOT NULL,
   `created` int(10) unsigned NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
+
+
+CREATE TABLE IF NOT EXISTS `speed_core_modules` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(256) NOT NULL,
+  `display_name` varchar(100) NOT NULL,
+  `access` tinyint(2) NOT NULL DEFAULT '0',
+  `show_title` tinyint(1) NOT NULL DEFAULT '0',
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `config` text NOT NULL,
+  `created` int(10) unsigned NOT NULL
+  PRIMARY KEY (`moduleid`),
+  KEY `status` (`status`),
+  KEY `access` (`access`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Table structure for table `speed_core_menu`
@@ -55,31 +70,13 @@ CREATE TABLE IF NOT EXISTS `speed_core_menu_types` (
 --
 
 CREATE TABLE IF NOT EXISTS `speed_core_permissions` (
-`id` int(11) unsigned NOT NULL,
-  `title` varchar(100) NOT NULL,
-  `permission` varchar(100) NOT NULL,
+  `id` int(11) unsigned NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `display_name` varchar(100) NOT NULL,
+  `description` text NULL,
   `ordering` int(11) NOT NULL,
   `status` tinyint(1) unsigned NOT NULL,
   `created` int(10) unsigned NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `speed_core_templates`
---
-
-CREATE TABLE IF NOT EXISTS `speed_core_templates` (
-`template_id` int(11) unsigned NOT NULL,
-  `template_name` varchar(100) NOT NULL,
-  `template_directory_name` varchar(50) NOT NULL,
-  `template_author` varchar(100) DEFAULT NULL,
-  `template_author_email` varchar(100) DEFAULT NULL,
-  `template_version` varchar(5) DEFAULT NULL,
-  `template_type` varchar(10) NOT NULL,
-  `config` text NOT NULL,
-  `created` int(10) unsigned NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -101,12 +98,6 @@ CREATE TABLE IF NOT EXISTS `speed_whitelist_domains` (
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `speed_core_cache`
---
-ALTER TABLE `speed_core_cache`
- ADD PRIMARY KEY (`cacheid`), ADD KEY `cache_key` (`cache_key`(255));
 
 --
 -- Indexes for table `speed_core_components`
@@ -138,11 +129,7 @@ ALTER TABLE `speed_core_options`
 ALTER TABLE `speed_core_permissions`
  ADD PRIMARY KEY (`id`), ADD KEY `status` (`status`), ADD KEY `ordering` (`ordering`);
 
---
--- Indexes for table `speed_core_templates`
---
-ALTER TABLE `speed_core_templates`
- ADD PRIMARY KEY (`template_id`), ADD KEY `status` (`status`);
+
 
 --
 -- Indexes for table `speed_whitelist_domains`
@@ -184,11 +171,7 @@ MODIFY `option_id` int(11) unsigned NOT NULL AUTO_INCREMENT;
 --
 ALTER TABLE `speed_core_permissions`
 MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `speed_core_templates`
---
-ALTER TABLE `speed_core_templates`
-MODIFY `template_id` int(11) unsigned NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `speed_whitelist_domains`
 --
@@ -209,3 +192,50 @@ ADD CONSTRAINT `speed_core_options_ibfk_1` FOREIGN KEY (`fksiteid`) REFERENCES `
 --
 ALTER TABLE `speed_whitelist_domains`
 ADD CONSTRAINT `speed_whitelist_domains_ibfk_1` FOREIGN KEY (`fkuserid`) REFERENCES `speed_users` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Table structure for table `speed_core_content`
+--
+
+CREATE TABLE IF NOT EXISTS `speed_core_content` (
+`post_id` int(10) unsigned NOT NULL,
+  `user_id` varchar(10) NOT NULL,
+  `post_type` varchar(20) NOT NULL,
+  `post_name` varchar(255) NOT NULL,
+  `post_title` varchar(256) NOT NULL,
+  `post_content` text NOT NULL,
+  `meta` mediumtext NOT NULL,
+  `ordering` int(11) NOT NULL,
+  `modified` int(10) NOT NULL,
+  `created` int(10) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `speed_core_content`
+--
+ALTER TABLE `speed_core_content`
+ ADD PRIMARY KEY (`post_id`), ADD KEY `status` (`status`), ADD KEY `fkuserid` (`user_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `speed_core_content`
+--
+ALTER TABLE `speed_core_content`
+MODIFY `post_id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=33;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `speed_core_content`
+--
+ALTER TABLE `speed_core_content`
+ADD CONSTRAINT `speed_core_content_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `speed_users` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE;

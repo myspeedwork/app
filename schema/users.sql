@@ -98,8 +98,9 @@ CREATE TABLE IF NOT EXISTS `speed_user_contact_details` (
 --
 
 CREATE TABLE IF NOT EXISTS `speed_user_groups` (
-`groupid` int(11) unsigned NOT NULL,
-  `group_name` varchar(100) NOT NULL,
+  `groupid` int(11) unsigned NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `display_name` varchar(100) NOT NULL,
   `permissions` text NOT NULL,
   `ordering` int(11) unsigned NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
@@ -135,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `speed_user_login_history` (
   `host` varchar(128) NOT NULL,
   `agent` varchar(255) NOT NULL,
   `referer` varchar(255) NOT NULL,
-  `meta_value` text NOT NULL,
+  `meta` text NOT NULL,
   `created` int(10) unsigned NOT NULL COMMENT 'login_time',
   `modified` int(10) unsigned NOT NULL COMMENT 'logouttime',
   `status` tinyint(1) unsigned NOT NULL
@@ -148,7 +149,7 @@ CREATE TABLE IF NOT EXISTS `speed_user_login_history` (
 --
 
 CREATE TABLE IF NOT EXISTS `speed_user_options` (
-`option_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `user_id` varchar(10) NOT NULL,
   `option_name` varchar(100) NOT NULL,
   `option_value` mediumtext,
@@ -164,7 +165,7 @@ CREATE TABLE IF NOT EXISTS `speed_user_options` (
 --
 
 CREATE TABLE IF NOT EXISTS `speed_user_permissions` (
-  `fkuserid` varchar(10) NOT NULL,
+  `user_id` varchar(10) NOT NULL,
   `permissions` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -215,8 +216,8 @@ CREATE TABLE IF NOT EXISTS `speed_user_social_providers` (
 --
 
 CREATE TABLE IF NOT EXISTS `speed_user_to_user` (
-  `fkuserid` varchar(10) NOT NULL,
-  `fkuserid1` varchar(10) NOT NULL
+  `parent_id` varchar(10) NOT NULL,
+  `user_id` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -462,3 +463,19 @@ MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 ALTER TABLE `speed_api_users`
 ADD CONSTRAINT `speed_api_users_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `speed_users` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+CREATE TABLE IF NOT EXISTS `speed_user_to_group` (
+  `user_id` varchar(10) NOT NULL,
+  `group_id` int(11) unsigned NOT NULL,
+  PRIMARY KEY (`user_id`,`group_id`),
+  KEY `group_id` (`group_id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Constraints for table `speed_user_to_group`
+--
+ALTER TABLE `speed_user_to_group`
+  ADD CONSTRAINT `speed_user_to_group` FOREIGN KEY (`user_id`) REFERENCES `speed_users` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `speed_user_to_group` FOREIGN KEY (`group_id`) REFERENCES `speed_user_groups` (`groupid`) ON DELETE CASCADE ON UPDATE CASCADE;

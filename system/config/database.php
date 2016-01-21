@@ -39,7 +39,7 @@ return [
             'username'   => env('DB_USERNAME', 'root'),
             'password'   => env('DB_PASSWORD', ''),
             'charset'    => 'utf8',
-            'collation'  => 'utf8_unicode_ci',
+            'collation'  => 'utf8_general_ci',
             'prefix'     => env('DB_PREFIX', 'speed_'),
         ],
     ],
