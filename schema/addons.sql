@@ -153,3 +153,12 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 ALTER TABLE `speed_addon_sms_logs`
 MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
+
+
+CREATE TABLE IF NOT EXISTS `visdesk_addon_sekeywords` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `keyword` varchar(255) NOT NULL,
+  `search_engine` varchar(20) NOT NULL,
+  `created` int(10) NOT NULL
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
