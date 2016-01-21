@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `speed_core_permissions` (
 
 CREATE TABLE IF NOT EXISTS `speed_whitelist_domains` (
 `id` int(10) unsigned NOT NULL,
-  `fkuserid` varchar(10) NOT NULL,
+  `user_id` varchar(10) NOT NULL,
   `store_key` varchar(20) NOT NULL,
   `domain` varchar(100) NOT NULL,
   `config_id` int(11) unsigned NOT NULL,
@@ -118,34 +118,22 @@ ALTER TABLE `speed_core_menu_types`
  ADD PRIMARY KEY (`id`), ADD KEY `menutype` (`menu_type`);
 
 --
--- Indexes for table `speed_core_options`
---
-ALTER TABLE `speed_core_options`
- ADD PRIMARY KEY (`option_id`), ADD UNIQUE KEY `site` (`fksiteid`,`option_name`);
-
---
 -- Indexes for table `speed_core_permissions`
 --
 ALTER TABLE `speed_core_permissions`
  ADD PRIMARY KEY (`id`), ADD KEY `status` (`status`), ADD KEY `ordering` (`ordering`);
 
 
-
 --
 -- Indexes for table `speed_whitelist_domains`
 --
 ALTER TABLE `speed_whitelist_domains`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `domain` (`domain`), ADD KEY `fkuserid` (`fkuserid`), ADD KEY `fkuserid_2` (`fkuserid`);
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `domain` (`domain`), ADD KEY `user_id` (`user_id`), ADD KEY `fkuserid_2` (`fkuserid`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
---
--- AUTO_INCREMENT for table `speed_core_cache`
---
-ALTER TABLE `speed_core_cache`
-MODIFY `cacheid` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `speed_core_components`
 --
@@ -161,11 +149,7 @@ MODIFY `menu_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=34;
 --
 ALTER TABLE `speed_core_menu_types`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `speed_core_options`
---
-ALTER TABLE `speed_core_options`
-MODIFY `option_id` int(11) unsigned NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `speed_core_permissions`
 --
@@ -182,16 +166,10 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 --
 
 --
--- Constraints for table `speed_core_options`
---
-ALTER TABLE `speed_core_options`
-ADD CONSTRAINT `speed_core_options_ibfk_1` FOREIGN KEY (`fksiteid`) REFERENCES `speed_whitelist_domains` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Constraints for table `speed_whitelist_domains`
 --
 ALTER TABLE `speed_whitelist_domains`
-ADD CONSTRAINT `speed_whitelist_domains_ibfk_1` FOREIGN KEY (`fkuserid`) REFERENCES `speed_users` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `speed_whitelist_domains_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `speed_users` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Table structure for table `speed_core_content`
