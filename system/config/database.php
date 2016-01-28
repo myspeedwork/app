@@ -54,9 +54,9 @@ return [
     | Delete : Before delete
     */
     'helpers' => [
-        'find'   => [],
-        'save'   => [],
-        'update' => [],
-        'delete' => [],
+        'find'   => ['find'],
+        'save'   => ['save'],
+        'delete' => ['delete'],
+        'update' => ['update'],
     ],
 ];
