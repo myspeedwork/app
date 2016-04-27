@@ -175,3 +175,50 @@ ALTER TABLE `speed_addon_shorturls`
 --
 ALTER TABLE `speed_addon_sms_logs`
   MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
+
+  
+--
+-- Table structure for table `speed_addon_audit`
+--
+
+CREATE TABLE IF NOT EXISTS `speed_addon_audit` (
+  `id` bigint(20) NOT NULL,
+  `user_id` varchar(10) NOT NULL,
+  `table_name` varchar(50) NOT NULL,
+  `route` varchar(50) NOT NULL,
+  `sql_query` text NOT NULL,
+  `meta` text NOT NULL,
+  `ip` varchar(25) NOT NULL,
+  `type` varchar(15) NOT NULL,
+  `created` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `speed_addon_audit`
+--
+ALTER TABLE `speed_addon_audit`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `speed_addon_audit`
+--
+ALTER TABLE `speed_addon_audit`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `speed_addon_audit`
+--
+ALTER TABLE `speed_addon_audit`
+  ADD CONSTRAINT `speed_addon_audit_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `speed_users` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE;

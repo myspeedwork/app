@@ -42,6 +42,24 @@ return [
             'collation'  => 'utf8_general_ci',
             'prefix'     => env('DB_PREFIX', 'speed_'),
         ],
+        'master' => [
+            'driver'     => 'mysqli',
+            'persistent' => false,
+            'wrapper'    => 'MasterSlave',
+            'database'   => env('DB_DATABASE', 'speedwork'),
+            'username'   => env('DB_USERNAME', 'root'),
+            'password'   => env('DB_PASSWORD', ''),
+            'charset'    => 'utf8',
+            'collation'  => 'utf8_general_ci',
+            'prefix'     => env('DB_PREFIX', 'speed_'),
+            'master'     => [
+                'host' => '172.16.1.213',
+            ],
+            'slaves' => [
+                ['host' => '172.16.1.207'],
+                ['host' => '172.16.1.184'],
+            ],
+        ],
     ],
 
     /*

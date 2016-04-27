@@ -9,13 +9,26 @@ return [
     'seo'    => ['enable' => true],
     'router' => ['enable' => true],
     'short'  => [
-        'enable'   => false,
-        'config'   => [],
+        'enable' => false,
+        'config' => [
+            /*
+            'option:view' => ['uniqid' => 'id']
+             */
+        ],
         'generate' => [],
     ],
     'forward' => [
         'enable' => false,
         'site'   => [],
-        'config' => [],
+        'config' => [
+            /*
+            http://domain.com/ => [
+                'option:' => true,
+                'option:view' => true,
+                'option:*' => true,
+                '*' => true
+            ]
+             */
+        ],
     ],
 ];
