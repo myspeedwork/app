@@ -59,6 +59,11 @@ return [
                 ['host' => '172.16.1.207'],
                 ['host' => '172.16.1.184'],
             ],
+            'connections' => [
+                'select' => 'slave',
+                'update' => 'master',
+                'other'  => 'master',
+            ],
         ],
     ],
 
