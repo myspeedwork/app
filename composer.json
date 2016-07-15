@@ -13,6 +13,9 @@
   "config": {
     "no-dev": true,
     "optimize-autoloader" : true
+  },  
+  "autoload" : {
+    "psr-4": { "System\\": "" }
   },
   "require": {
     "php": ">=5.5",
