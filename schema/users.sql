@@ -2,10 +2,10 @@
 -- --------------------------------------------------------
 
 --
--- Table structure for table `speed_api_users`
+-- Table structure for table `speed_users_api`
 --
 
-CREATE TABLE IF NOT EXISTS `speed_api_users` (
+CREATE TABLE IF NOT EXISTS `speed_users_api` (
   `id` bigint(20) unsigned NOT NULL,
   `user_id` varchar(10) NOT NULL,
   `api_key` varchar(100) NOT NULL,
@@ -17,10 +17,10 @@ CREATE TABLE IF NOT EXISTS `speed_api_users` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `speed_api_users`
+-- Dumping data for table `speed_users_api`
 --
 
-INSERT INTO `speed_api_users` (`id`, `user_id`, `api_key`, `api_secret`, `allowed_ip`, `status`, `modified`, `created`) VALUES
+INSERT INTO `speed_users_api` (`id`, `user_id`, `api_key`, `api_secret`, `allowed_ip`, `status`, `modified`, `created`) VALUES
 (1, '1234567890', '842eff6d7a6f1ebfe55f86462de6f4e7', '842eff6d7a6f1ebfe55f86462de6f4e7234', '', 1, 1451479750, 1451479750);
 
 -- --------------------------------------------------------
@@ -70,38 +70,6 @@ CREATE TABLE IF NOT EXISTS `speed_users_online` (
   `default_status` tinyint(4) NOT NULL,
   `current_status` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Stand-in structure for view `speed_users_online_view`
---
-CREATE TABLE IF NOT EXISTS `speed_users_online_view` (
-`user_id` varchar(10)
-,`online` int(4)
-,`last_seen` int(11)
-);
-
--- --------------------------------------------------------
-
---
--- Stand-in structure for view `speed_users_view`
---
-CREATE TABLE IF NOT EXISTS `speed_users_view` (
-`userid` varchar(10)
-,`power` int(11)
-,`email` varchar(120)
-,`username` varchar(100)
-,`gender` varchar(10)
-,`mobile` varchar(15)
-,`avatar` varchar(100)
-,`name` varchar(201)
-,`user` varchar(101)
-,`active` tinyint(1)
-,`since` int(10)
-,`online` bigint(11)
-,`last_seen` int(11)
-);
 
 -- --------------------------------------------------------
 
@@ -305,27 +273,27 @@ CREATE TABLE IF NOT EXISTS `speed_user_trusted_ip` (
 --
 -- Structure for view `speed_users_online_view`
 --
-DROP TABLE IF EXISTS `speed_users_online_view`;
+DROP VIEW IF EXISTS `speed_users_online_view`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`sankar`@`localhost` SQL SECURITY DEFINER VIEW `speed_users_online_view` AS select `speed_users_online`.`user_id` AS `user_id`,(case when (`speed_users_online`.`default_status` <> 1) then `speed_users_online`.`default_status` when (`speed_users_online`.`last_active` > (unix_timestamp() - ((1000 * 60) * 5))) then `speed_users_online`.`current_status` end) AS `online`,`speed_users_online`.`last_active` AS `last_seen` from `speed_users_online`;
+CREATE VIEW `speed_users_online_view` AS select `speed_users_online`.`user_id` AS `user_id`,(case when (`speed_users_online`.`default_status` <> 1) then `speed_users_online`.`default_status` when (`speed_users_online`.`last_active` > (unix_timestamp() - ((1000 * 60) * 5))) then `speed_users_online`.`current_status` end) AS `online`,`speed_users_online`.`last_active` AS `last_seen` from `speed_users_online`;
 
 -- --------------------------------------------------------
 
 --
 -- Structure for view `speed_users_view`
 --
-DROP TABLE IF EXISTS `speed_users_view`;
+DROP VIEW IF EXISTS `speed_users_view`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`sankar`@`localhost` SQL SECURITY DEFINER VIEW `speed_users_view` AS select `u`.`userid` AS `userid`,`u`.`power` AS `power`,`u`.`email` AS `email`,`u`.`username` AS `username`,`u`.`gender` AS `gender`,`u`.`mobile` AS `mobile`,(case `u`.`avatar` when '' then 'nophoto.png' else `u`.`avatar` end) AS `avatar`,replace(concat(`u`.`first_name`,' ',`u`.`last_name`),'  ',' ') AS `name`,concat('@',`u`.`username`) AS `user`,`u`.`status` AS `active`,`u`.`created` AS `since`,if(`o`.`online`,`o`.`online`,0) AS `online`,`o`.`last_seen` AS `last_seen` from (`speed_users` `u` left join `speed_users_online_view` `o` on((`u`.`userid` = convert(`o`.`user_id` using utf8))));
+CREATE VIEW `speed_users_view` AS select `u`.`userid` AS `userid`,`u`.`power` AS `power`,`u`.`email` AS `email`,`u`.`username` AS `username`,`u`.`gender` AS `gender`,`u`.`mobile` AS `mobile`,(case `u`.`avatar` when '' then 'nophoto.png' else `u`.`avatar` end) AS `avatar`,replace(concat(`u`.`first_name`,' ',`u`.`last_name`),'  ',' ') AS `name`,concat('@',`u`.`username`) AS `user`,`u`.`status` AS `active`,`u`.`created` AS `since`,if(`o`.`online`,`o`.`online`,0) AS `online`,`o`.`last_seen` AS `last_seen` from (`speed_users` `u` left join `speed_users_online_view` `o` on((`u`.`userid` = convert(`o`.`user_id` using utf8))));
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `speed_api_users`
+-- Indexes for table `speed_users_api`
 --
-ALTER TABLE `speed_api_users`
+ALTER TABLE `speed_users_api`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fkuserid` (`user_id`),
   ADD KEY `status` (`status`),
@@ -439,9 +407,9 @@ ALTER TABLE `speed_user_trusted_ip`
 --
 
 --
--- AUTO_INCREMENT for table `speed_api_users`
+-- AUTO_INCREMENT for table `speed_users_api`
 --
-ALTER TABLE `speed_api_users`
+ALTER TABLE `speed_users_api`
   MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `speed_user_banned_ip`
@@ -488,10 +456,10 @@ ALTER TABLE `speed_user_trusted_ip`
 --
 
 --
--- Constraints for table `speed_api_users`
+-- Constraints for table `speed_users_api`
 --
-ALTER TABLE `speed_api_users`
-  ADD CONSTRAINT `speed_api_users_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `speed_users` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `speed_users_api`
+  ADD CONSTRAINT `speed_users_api_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `speed_users` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `speed_user_login_history`

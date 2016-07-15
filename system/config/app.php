@@ -23,7 +23,7 @@ $_config['core_apps']['module'] = [
 
 $_config['tables'] = [
     'default' => [
-        'api_users'            => 'user_id',
+        'users_api'            => 'user_id',
         'mod_notifications'    => 'user_id',
         'user_login_history'   => 'user_id',
         'user_options'         => 'user_id',
