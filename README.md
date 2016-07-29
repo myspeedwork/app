@@ -15,3 +15,6 @@ Create database and load `.sql` files in schema folder in following order
 
 You can remove few tables if you don't want that perticual functionality. 
 Make sure disable those features in applications aswell.
+
+# Assests
+    bower install

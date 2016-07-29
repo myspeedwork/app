@@ -1,25 +1,31 @@
 {
-  "name": "speedwork/app",
-  "type": "application",
-  "description": "A Speedwork Application",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "sankar",
-      "email": "sankar.suda@gmail.com"
+    "name": "speedwork/app",
+    "type": "application",
+    "description": "A Speedwork Application",
+    "license": "MIT",
+    "authors": [{
+        "name": "sankar",
+        "email": "sankar.suda@gmail.com"
+    }],
+    "minimum-stability": "dev",
+    "config": {
+        "no-dev": true,
+        "optimize-autoloader": true
+    },
+    "autoload": {
+        "psr-4": {
+            "System\\": ""
+        }
+    },
+    "require": {
+        "php": ">=5.5",
+        "speedwork/framework": "dev-master",
+        "speedwork/theme-starter": "dev-master"
+    },
+    "suggests": {
+        "willdurand/geocoder": "~v3",
+        "geoip2/geoip2": "~v2",
+        "speedwork/cache": "dev-master",
+        "monolog/monolog": "^1.17"
     }
-  ],
-  "minimum-stability" : "dev",
-  "config": {
-    "no-dev": true,
-    "optimize-autoloader" : true
-  },  
-  "autoload" : {
-    "psr-4": { "System\\": "" }
-  },
-  "require": {
-    "php": ">=5.5",
-    "speedwork/framework" : "dev-master",
-    "speedwork/theme-starter" : "dev-master"
-  }
 }
