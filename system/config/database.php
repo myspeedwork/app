@@ -68,9 +68,14 @@ return [
     ],
 
     /*
+    |--------------------------------------------------------------------------
+    | Database Helpers
+    |--------------------------------------------------------------------------
+    |
     | Helpers to change the query or data before and after process.
     | Helps to log the data or queries for activity or stop execution of query
     | Accepts array of helpers
+    |
     | Find : Before and after select query
     | Save : Before saving the data into database
     | Update : Before updating the data
@@ -82,4 +87,28 @@ return [
         'delete' => ['delete'],
         'update' => ['update'],
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Tables configuration
+    |--------------------------------------------------------------------------
+    |
+    | Use this configuration to add user_id to below tables in query process
+    */
+   'tables' => [
+        'default' => [
+            'users_api'            => 'user_id',
+            'mod_notifications'    => 'user_id',
+            'user_login_history'   => 'user_id',
+            'user_options'         => 'user_id',
+            'whitelist_domains'    => 'user_id',
+            'user_social'          => 'user_id',
+            'user_contact_details' => 'user_id',
+        ],
+        'find'   => [],
+        'save'   => [],
+        'delete' => [],
+        'update' => [],
+    ],
+
 ];

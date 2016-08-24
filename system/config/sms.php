@@ -8,6 +8,6 @@ return [
     'mysmsprovider' => [
         /*
          * Sms provider configuration
-         */
+        */
     ],
 ];
