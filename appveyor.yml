@@ -26,6 +26,10 @@ install:
     - echo extension_dir=ext >> php.ini
     - echo extension=php_curl.dll >> php.ini
     - echo extension=php_openssl.dll >> php.ini
+    - SET PATH=C:\tools\php\;%PATH%
+    - php -r "readfile('https://getcomposer.org/installer');" | php -- --filename=composer
+    - php composer config -g github-oauth.github.com 5e7538aa415005c606ea68de2bbbade0409b4b8c
+    - SET PATH=%APPDATA%\Composer\vendor\bin;%PATH%
     - cd C:\tools
     - appveyor DownloadFile https://getcomposer.org/composer.phar
     - appveyor DownloadFile https://phar.phpunit.de/phpunit.phar
