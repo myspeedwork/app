@@ -1,0 +1,1 @@
+<speed:include type="component" />

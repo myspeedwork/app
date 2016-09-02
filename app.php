@@ -1,13 +1,14 @@
 <?php
 
-/**
+/*
  * This file is part of the Speedwork package.
  *
- * @link http://github.com/speedwork
+ * (c) Sankar <sankar.suda@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code
  */
+
 defined('DS') or define('DS', DIRECTORY_SEPARATOR);
 define('ABSPATH', dirname(__FILE__).DS);
 defined('APP') or define('APP', ABSPATH);

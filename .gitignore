@@ -6,30 +6,16 @@
 *.sublime-project
 *.sublime-workspace
 composer.phar
-composer.lock
-.env
 
 # OS Files
 .DS_Store
 Thumbs.db
 ._*
-.nfs*
+.nfs*p.
 *~
 *.bak
 desktop.ini
 
-*.log
-*.tpl.php
-*.tmp
-*.php_cs.cache
-*.TMP
 vendor
-bower_components
-node_modules
-/bk
-!*.gitkeep
-!*empty
-tests/
-tests/_output/*
-/_SYNCAPP
-test.php
+build
+
