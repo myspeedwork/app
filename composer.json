@@ -30,10 +30,10 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "composer dump-autload --optimize"
+            "composer dump-autoload --optimize"
         ],
         "post-update-cmd": [
-            "composer dump-autload --optimize"
+            "composer dump-autoload --optimize"
         ],
         "post-create-project-cmd": [
             "php -r \"copy('.env.example', '.env');\""
