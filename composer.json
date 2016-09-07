@@ -14,13 +14,14 @@
     },
     "autoload": {
         "psr-4": {
-            "System\\": ""
+            "System\\": "system/"
         }
     },
     "require": {
         "php": ">=5.5",
         "speedwork/framework": "dev-master",
-        "speedwork/theme-starter": "dev-master"
+        "speedwork/theme-starter": "dev-master",
+        "speedwork/theme-speed": "dev-master"
     },
     "suggests": {
         "willdurand/geocoder": "~v3",

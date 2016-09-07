@@ -17,8 +17,6 @@ use Speedwork\Core\Di;
 /**
  * Application Controller will be called on every request.
  *
- * @since  0.0.1
- *
  * @author sankar <sankar.suda@gmail.com>
  */
 class AppController extends Di
@@ -41,10 +39,6 @@ class AppController extends Di
 
     private function loadForWeb()
     {
-        // for setting the date and time
-        $this->assign('time', date('l, d M Y, h:i A'));
-        $this->assign('year', date('Y'));
-
         $this->get('resolver')->helper('events')->attach();
         $this->get('resolver')->helper('metainfo')->index();
 

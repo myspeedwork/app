@@ -18,6 +18,7 @@ return [
             'include' => [
                 'home:**',
                 'content:**',
+                'members:register:*',
             ],
             'exclude' => [],
         ],
@@ -58,6 +59,6 @@ return [
         ],
         'onlogin'  => 'account',
         'onlogout' => '',
-        'guest'    => 'members/login',
+        'guest'    => 'login',
     ],
 ];

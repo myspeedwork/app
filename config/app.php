@@ -53,7 +53,7 @@ return [
     |
     */
 
-    'url' => 'http://localhost',
+    //'url' => 'http://localhost/',
 
     /*
     |--------------------------------------------------------------------------
@@ -164,5 +164,19 @@ return [
             'minify' => false,
             'cdnify' => false,
         ],
+    ],
+
+    /*
+    |-------------------------------------------------------------------------
+    | Default device setup
+    |-------------------------------------------------------------------------
+    |
+    | Leaving empty application will try to guess the device type
+    | Device types computer, mobile, tablet (default:computer)
+    |
+    */
+
+    'device' => [
+        'type' => 'computer',
     ],
 ];

@@ -10,4 +10,4 @@
  */
 
 $app = require 'app.php';
-$app->run();
+$app->handle();

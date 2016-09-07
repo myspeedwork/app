@@ -11,8 +11,12 @@
 
 return [
     'routes' => [
+        'register' => 'index.php?option=members&view=register',
+        'login'    => 'index.php?option=members&view=login',
+        'logout'   => 'index.php?option=members&view=logout',
+        'account'  => 'index.php?option=members&view=account',
         /*
-         | 'content/(:num)/(.*)' => 'index.php?option=content&id=$1&name=$2',
+        | 'content/(:num)/(.*)' => 'index.php?option=content&id=$1&name=$2',
         */
     ],
     'seo'    => ['enable' => true],
