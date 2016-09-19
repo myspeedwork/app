@@ -19,7 +19,7 @@ return [
     | Name of your application will be used email templates and other places
     */
 
-    'name' => env('NAME', 'speedwork'),
+    'name' => env('APP_NAME', 'speedwork'),
 
     /*
     |--------------------------------------------------------------------------
@@ -27,7 +27,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'environment' => env('ENVIRONMENT', 'local'),
+    'environment' => env('APP_ENVIRONMENT', 'local'),
 
     /*
     |--------------------------------------------------------------------------
@@ -40,7 +40,7 @@ return [
     |
     */
 
-    'debug' => env('DEBUG', false),
+    'debug' => env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -53,7 +53,7 @@ return [
     |
     */
 
-    //'url' => 'http://localhost/',
+    'cliurl' => 'http://localhost/',
 
     /*
     |--------------------------------------------------------------------------
@@ -92,7 +92,7 @@ return [
     |
     */
 
-    'key' => env('KEY', 'SomeRandomString'),
+    'key' => env('APP_KEY', 'SomeRandomString'),
 
     /*
     |--------------------------------------------------------------------------
@@ -100,14 +100,19 @@ return [
     |--------------------------------------------------------------------------
     |
     | Here you may configure the log settings for your application. Out of
-    | the box, Laravel uses the Monolog PHP logging library. This gives
+    | the box, Speedwork uses the Monolog PHP logging library. This gives
     | you a variety of powerful log handlers / formatters to utilize.
     |
     | Available Settings: "single", "daily", "syslog"
     |
     */
 
-    'log' => 'daily',
+    'log' => [
+        'logfile'   => 'speedwork.log',
+        'rotate'    => 'single',
+        'level'     => 'debug',
+        'max_files' => 10,
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -115,9 +120,9 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'encoding' => env('ENCODING', 'UTF-8'),
+    'encoding' => env('APP_ENCODING', 'UTF-8'),
 
-   /*
+    /*
     |--------------------------------------------------------------------------
     | Analytics key
     |--------------------------------------------------------------------------
@@ -126,9 +131,9 @@ return [
     | Leave empty in case you place your own code or not required
     */
 
-    'analytics' => env('ANALYTICS'),
+    'analytics' => env('APP_ANALYTICS'),
 
-   /*
+    /*
     |--------------------------------------------------------------------------
     | Global Components and Modules
     |--------------------------------------------------------------------------
@@ -151,22 +156,6 @@ return [
     ],
 
     /*
-    |--------------------------------------------------------------------------
-    | Minifier helper configuration
-    |--------------------------------------------------------------------------
-    */
-    'minifier' => [
-        'js' => [
-            'minify' => false,
-            'cdnify' => false,
-        ],
-        'css' => [
-            'minify' => false,
-            'cdnify' => false,
-        ],
-    ],
-
-    /*
     |-------------------------------------------------------------------------
     | Default device setup
     |-------------------------------------------------------------------------
@@ -178,5 +167,44 @@ return [
 
     'device' => [
         'type' => 'computer',
+    ],
+
+    /*
+     |----------------------------------------------------------------------------
+     | Default Meta data for html
+     |----------------------------------------------------------------------------
+     |
+     | These meta data information can be set on each request.
+     | These values can be overwrite from component or from helpers by keeping
+     | same name.
+     | You can set open graph data or Twitter card or any other meta
+     | "name::type(optional)" => "value of meta data"
+     | Example : "og:title::property" => 'Awsome Speedwork'
+     */
+    'meta' => [
+        'title'       => '',
+        'keywords'    => '',
+        'description' => '',
+    ],
+
+    /*
+     |----------------------------------------------------------------------------
+     | Dynamic meta info
+     |----------------------------------------------------------------------------
+     |
+     | Set the meta data from database. Need to set option and view config to enable
+     | meta from database. System will get the meta based on option, view and unique
+     | ids conbination.
+     |
+     | In below example config, option=content, view=page and query string id should
+     | match with database unique id.
+     */
+    'metainfo' => [
+        'enable' => false,
+        'config' => [
+            'content:page' => 'id',
+            'option:'      => ['id', 'name'],
+            'option:*'     => 'id',
+        ],
     ],
 ];

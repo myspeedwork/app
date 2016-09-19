@@ -10,23 +10,28 @@
  */
 
 return [
-    'routes' => [
-        'register' => 'index.php?option=members&view=register',
-        'login'    => 'index.php?option=members&view=login',
-        'logout'   => 'index.php?option=members&view=logout',
-        'account'  => 'index.php?option=members&view=account',
-        /*
-        | 'content/(:num)/(.*)' => 'index.php?option=content&id=$1&name=$2',
-        */
+
+    'seo' => [
+        'enable' => true,
     ],
-    'seo'    => ['enable' => true],
-    'router' => ['enable' => true],
-    'short'  => [
+    'router' => [
+        'enable' => true,
+        'routes' => [
+            'register' => 'index.php?option=members&view=register',
+            'login'    => 'index.php?option=members&view=login',
+            'logout'   => 'index.php?option=members&view=logout',
+            'account'  => 'index.php?option=members&view=account',
+            /*
+            | 'content/(:num)/(.*)' => 'index.php?option=content&id=$1&name=$2',
+            */
+        ],
+    ],
+    'short' => [
         'enable' => false,
         'config' => [
             /*
-            'option:view' => ['uniqid' => 'id']
-             */
+            | 'option:view' => ['uniqid' => 'id']
+            */
         ],
         'generate' => [],
     ],

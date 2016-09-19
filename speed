@@ -1,15 +1,6 @@
 <?php
 
 /*
- * This file is part of the Speedwork package.
- *
- * (c) Sankar <sankar.suda@gmail.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code
- */
-
-/*
 |--------------------------------------------------------------------------
 | Register The Auto Loader
 |--------------------------------------------------------------------------
@@ -20,39 +11,35 @@
 | loading of any our classes "manually". Feels great to relax.
 |
 */
+
 $app = require __DIR__.'/app.php';
 
 /*
 |--------------------------------------------------------------------------
-| Register Additional Providers
+| Register Default Providers
 |--------------------------------------------------------------------------
 |
-| Register all additional providers which are required for application.
+| Register all providers which are required for application.
 |
 */
-
-$app->register(new \Speedwork\Provider\WhoopsServiceProvider());
-$app->register(new \Speedwork\Cache\CacheServiceProvider());
+$app->register(new \Speedwork\Console\ConsoleServiceProvider());
 
 /*
 |--------------------------------------------------------------------------
-| Run The Application
+| Run The Speedwork Application
 |--------------------------------------------------------------------------
 |
-| Once we have the application, we can handle the incoming request
-| through the kernel, and send the associated response back to
-| the client's browser allowing them to enjoy the creative
-| and wonderful application we have prepared for them.
+| When we run the console application, the current CLI command will be
+| executed in this console and the response sent back to a terminal
+| or another output device for the developers. Here goes nothing!
 |
 */
 
-$kernel = new Speedwork\Core\Http\Kernel($app);
+$kernel = new Speedwork\Console\Kernel($app);
+$input  = new Symfony\Component\Console\Input\ArgvInput();
+$output = new Symfony\Component\Console\Output\ConsoleOutput();
 
-$request  = Speedwork\Core\Http\Request::createFromGlobals();
-$response = new Speedwork\Core\Http\Response();
-
-$response = $kernel->handle($request, $response);
-$response->send();
+$status = $kernel->handle($input, $output);
 
 /*
 |--------------------------------------------------------------------------
@@ -65,4 +52,6 @@ $response->send();
 |
 */
 
-$kernel->terminate($request, $response);
+$kernel->terminate($input, $status);
+
+exit($status);

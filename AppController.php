@@ -45,7 +45,7 @@ class AppController extends Di
         $components = config('app.components');
         if (empty($components)) {
             $components = [
-                '' => ['content', 'welcome'],
+                '' => 'content.welcome',
             ];
         }
 
@@ -64,21 +64,21 @@ class AppController extends Di
         $app = config('app');
 
         //add some extra meta tags
-        $this->get('template')->setMetaData('robots', 'index, follow');
+        $this->get('template')->setMeta('robots', 'index, follow');
 
         //open graph data
-        $this->get('template')->setMetaData('og:site_name', $app['name'], 'property');
-        $this->get('template')->setMetaData('og:url', _URL, 'property');
-        $this->get('template')->setMetaData('og:image', $this->themeimages.'social.png', 'property');
-        $this->get('template')->setMetaData('og:title', $app['title'], 'property');
-        $this->get('template')->setMetaData('og:description', $app['descn'], 'property');
-        $this->get('template')->setMetaData('og:type', 'product', 'property');
+        $this->get('template')->setMeta('og:site_name', $app['name'], 'property');
+        $this->get('template')->setMeta('og:url', _URL, 'property');
+        $this->get('template')->setMeta('og:image', config('location.theme').'images/social.png', 'property');
+        $this->get('template')->setMeta('og:title', $app['title'], 'property');
+        $this->get('template')->setMeta('og:description', $app['descn'], 'property');
+        $this->get('template')->setMeta('og:type', 'product', 'property');
 
-        $this->get('template')->setMetaData('twitter:card', 'summary_large_image', 'property');
-        $this->get('template')->setMetaData('twitter:image', $this->themeimages.'social.png', 'property');
-        $this->get('template')->setMetaData('twitter:title', $app['title'], 'property');
-        $this->get('template')->setMetaData('twitter:description', $app['descn'], 'property');
-        $this->get('template')->setMetaData('twitter:site', '@'.$app['name'], 'property');
+        $this->get('template')->setMeta('twitter:card', 'summary_large_image', 'property');
+        $this->get('template')->setMeta('twitter:image', config('location.theme').'images/social.png', 'property');
+        $this->get('template')->setMeta('twitter:title', $app['title'], 'property');
+        $this->get('template')->setMeta('twitter:description', $app['descn'], 'property');
+        $this->get('template')->setMeta('twitter:site', '@'.$app['name'], 'property');
 
         $environment = $app['env'];
         if ($environment == 'prod' && $app['analytics']) {

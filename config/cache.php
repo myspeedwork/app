@@ -51,11 +51,11 @@ return [
 
         'file' => [
             'driver' => 'file',
-            'path'   => 'storage/cache',
+            'path'   => __DIR__.'/../storage/cache/',
         ],
 
         'mongodb' => [
-            'driver'     => 'file',
+            'driver'     => 'mongodb',
             'server'     => '127.0.0.1',
             'name'       => 'speedwork',
             'collection' => 'speedwork',
@@ -96,6 +96,6 @@ return [
     |
     */
 
-    'namespace' => env('name', 'speedwork'),
+    'namespace' => env('CACHE_NAMESPACE', 'speedwork'),
 
 ];

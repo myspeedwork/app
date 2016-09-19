@@ -21,14 +21,14 @@ return [
     'blacklist' => false,
     'from'      => [
         'name'  => _SITENAME,
-        'email' => 'no-reply@infimart.com',
+        'email' => 'no-reply@webadress.com',
     ],
     'provider'  => 'PHPMailer',
     'phpmailer' => [
-        'smtp'      => false,
-        'mail_host' => 'smtp.hostname.net',
-        'mail_port' => '2525',
-        'mail_user' => 'smpp-username',
-        'mail_pass' => 'smpp-password',
+        'smtp'     => false,
+        'host'     => 'smtp.hostname.net',
+        'port'     => 2525,
+        'username' => 'smpp-username',
+        'password' => 'smpp-password',
     ],
 ];
