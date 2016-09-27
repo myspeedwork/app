@@ -16,7 +16,7 @@ before_script:
   - composer install --no-interaction --prefer-dist --no-suggest
   - php console key:generate
   - chmod -R 777 storage/
-  - chmod -R 777 public/upload/
+  - chmod -R 777 public/uploads/
   - chmod -R 777 public/cache/
 
 script:
