@@ -8,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code
  */
+error_reporting(E_ALL ^ E_NOTICE);
 
 defined('DS') or define('DS', DIRECTORY_SEPARATOR);
 define('ABSPATH', dirname(__FILE__).DS);
