@@ -11,11 +11,12 @@
 
 $app = require dirname(__FILE__).'/../startup.php';
 
-$request = Speedwork\Util\RestUtils::processRequest();
 $restApi = new Speedwork\Core\RestApi();
 $restApi->setContainer($app);
+$request = $restApi->captureRequest();
 
 echo $restApi
         ->setRequest($request)
         ->setPublicMethods(['content'])
+        ->setCache()
         ->processMethod();

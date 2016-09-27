@@ -24,7 +24,7 @@ class Controller extends BaseController
 
         $row = $this->model->getContent($id);
 
-        $modifier = $this->get('resolver')->helper('content');
+        $modifier = $this->get('resolver')->helper('content.content');
 
         $row['post_content'] = $modifier->index($row['post_content']);
         $row['meta']         = json_decode($row['meta'], true);

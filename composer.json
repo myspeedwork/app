@@ -19,7 +19,6 @@
         "speedwork/filesystem": "^1.0",
         "speedwork/console": "^1.0",
         "speedwork/cache": "^1.0",
-        "speedwork/framework": "^1.0",
         "speedwork/helpers": "^1.0",
         "speedwork/database": "^1.0",
         "symfony/event-dispatcher": "^3.1",
@@ -44,15 +43,24 @@
         "piwik/device-detector": "3.4.2 For auto detect device"
     },
     "scripts": {
-        "post-create-project-cmd": ["php -r \"copy('.env.example', '.env');\""]
+        "post-root-package-install": [
+            "php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "php console key:generate"
+        ]
     },
     "autoload": {
         "psr-4": {
             "System\\": "system/"
-        }
+        },
+        "classmap" : ["AppServiceProvider.php"]
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
+    "config": {
+        "preferred-install": "dist"
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "1.0.x-dev"

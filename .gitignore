@@ -6,6 +6,7 @@
 *.sublime-workspace
 composer.phar
 .env
+.htaccess
 
 # OS Files
 ._*

@@ -3,11 +3,8 @@
   "version": "v1.0.0",
   "description": "Web application dependencies",
   "dependencies": {
-      "ionicons":"~2.0.1",
       "nprogress":"~0.2.0",
       "animate.css":"~3.4.0",
-      "font-awsome":"~4.4.0",
-      "metisMenu":"~2.1.0",
       "jquery":"~2.1.4",
       "bootstrap":"~3.3.5"
   }

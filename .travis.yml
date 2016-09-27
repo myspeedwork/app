@@ -13,7 +13,11 @@ before_install:
   - travis_retry composer self-update
 
 before_script:
-  - composer install --prefer-dist --no-interaction
+  - composer install --no-interaction --prefer-dist --no-suggest
+  - php console key:generate
+  - chmod -R 777 storage/
+  - chmod -R 777 public/upload/
+  - chmod -R 777 public/cache/
 
 script:
   - mkdir -p build/logs

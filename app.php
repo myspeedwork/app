@@ -13,18 +13,6 @@ defined('DS') or define('DS', DIRECTORY_SEPARATOR);
 define('ABSPATH', dirname(__FILE__).DS);
 defined('APP') or define('APP', ABSPATH);
 
-$paths = [
-    'speedwork',
-    'vendor/speedwork/framework',
-];
-
-foreach ($paths as $path) {
-    if (file_exists($file = APP.$path.DS.'startup.php')) {
-        include $file;
-        break;
-    }
-}
-
 /*
 |--------------------------------------------------------------------------
 | Register The Composer Auto Loader

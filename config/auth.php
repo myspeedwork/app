@@ -12,14 +12,14 @@
 return [
     /*
      |----------------------------------------------------------------------------
-     | Use Power Column
+     | Use role_id Column
      |----------------------------------------------------------------------------
      |
-     | Use power column in users table to store the user role. In this case user
+     | Use role_id column in users table to store the user role. In this case user
      | Can have only one role.
-     | Disable to use user_to_group table, Use can have multiple roles.
+     | Disable to use user_to_role table, Use can have multiple roles.
      */
-    'power' => true,
+    'role_id' => true,
 
     /*
      |----------------------------------------------------------------------------
@@ -48,7 +48,7 @@ return [
      | controlled for each role and each user. You can hard code permissons here.
      | These list can be overwite from database level.
      */
-    'permissions' => [
+    'grants' => [
         'public' => [
             'include' => [
                 'home:**',
@@ -77,7 +77,7 @@ return [
      */
     'account' => [
         'enable_online_registration' => true,
-        'default_user_group'         => 5,
+        'default_user_role'          => 5,
         'auto_increment_userid'      => false,
         'activation'                 => true,
         'sms_activation'             => false,
@@ -97,9 +97,9 @@ return [
          |
          */
         'social' => [
-            'enable'  => false,
+            'enable'  => true,
             'publish' => false,
-            'login'   => false,
+            'login'   => true,
         ],
         /*
          |------------------------------------------------------------------
@@ -123,7 +123,7 @@ return [
          | onlogout: Which page user should redirect to after logout (default: home)
          | guest: Which guest try access the page which requires permission
          */
-        'onlogin'  => 'account',
+        'onlogin'  => 'me',
         'onlogout' => '',
         'guest'    => 'login',
     ],

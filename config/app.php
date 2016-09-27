@@ -141,18 +141,15 @@ return [
     | Components and Modules which are loaded from other locations
     | We can specify the different locations to load
     |
-    | Default : speedwork/system & system
+    | Example Component:
+    |   "members" => [
+    |       "namespace" => "\\Speedwork\\Components\\Members"
+    |       "views" => 'storage/views/members'
+    |   ]
     */
     'apps' => [
-        'components' => [
-            'errors'  => true,
-            'menu'    => true,
-            'members' => true,
-            'media'   => true,
-        ],
-        'modules' => [
-            'menu' => true,
-        ],
+        'components' => [],
+        'modules'    => [],
     ],
 
     /*

@@ -33,6 +33,8 @@ $app = require __DIR__.'/app.php';
 
 $app->register(new \Speedwork\Provider\WhoopsServiceProvider());
 $app->register(new \Speedwork\Cache\CacheServiceProvider());
+$app->register(new \Speedwork\Turbo\TurboServiceProvider());
+$app->register(new \App\AppServiceProvider());
 
 /*
 |--------------------------------------------------------------------------

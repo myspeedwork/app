@@ -11,9 +11,55 @@
 
 return [
     'themes' => [
+        /*
+         |----------------------------------------------------------------------------
+         | Default theme config all devices
+         |----------------------------------------------------------------------------
+         |
+         | Default config will be applied for all devices. Devices are identified by
+         | their headers
+         */
         'default' => [
-            'default' => 'speed',
+            'default'       => 'speed',
+            'members:login' => 'speed',
+            'members:*'     => 'speed.login',
         ],
+        /*
+         |----------------------------------------------------------------------------
+         | Theme configuration for computer devices
+         |----------------------------------------------------------------------------
+         |
+         | You can overwrite the theme config provided in default for computer (big screen)
+         | devices
+         */
+        'computer' => [
+            /*
+             |----------------------------------------------------------------------------
+             | Default key
+             |----------------------------------------------------------------------------
+             |
+             | Default config will be used if route not matching with any of theme config
+             | Example route configurations are:
+             |
+             |  members:login (members component and login method)
+             |  members:* (members component and all methods)
+             */
+            'members:changepass' => 'speed',
+        ],
+
+        /*
+         |----------------------------------------------------------------------------
+         | Theme configuration for mobile devices
+         |----------------------------------------------------------------------------
+         */
+        'phone' => [],
+
+        /*
+         |----------------------------------------------------------------------------
+         | Theme configuration for tablet devices
+         |----------------------------------------------------------------------------
+         */
+        'tablet' => [],
     ],
 
     /*

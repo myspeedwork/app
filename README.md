@@ -1,32 +1,47 @@
 # Application Skeleton
 =================================
 
-Rename .evn.example to .env and change necessary settings.
+## Installation
 
-Installation with Composer
---------------------------
+1. Clone the repository
+
+```shell
+$ git clone git@github.com:speedwork/app.git
+```
+
+1. Using Composer
 
 ```shell
 curl -s http://getcomposer.org/installer | php
-composer create-project --no-dev -s dev speedwork/app fb
-```
+composer create-project --prefer-dist --no-dev -s dev speedwork/app
 
-# Database
-
-Create database and load `.sql` files in schema folder in following order
-    1. users.sql
-    2. core.sql
-    3. themes.sql
-    4. addons.sql
-
-You can remove few tables if you don't want that perticual functionality. 
-Make sure disable those features in applications aswell.
-
-# Assests
+2. Install dependencies
 
 ```shell
-    bower install
+$ composer install -o --no-dev --prefer-dist
+$ bower install --production
 ```
+
+3. Make sure the storage and upload directories are writable
+
+```shell
+$ chmod -R 777 storage
+$ chmod -R 777 public/cache
+$ chmod -R 777 public/upload
+```
+
+4. Make additional configuration changes
+
+```shell
+$ editor .env
+```
+
+5. Run Migration
+
+```shell
+$ php ./console migrate
+```
+
 
 #Contributing
 =============================================
