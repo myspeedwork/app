@@ -33,7 +33,6 @@ $app = require __DIR__.'/app.php';
 
 $app->register(new \Speedwork\Provider\WhoopsServiceProvider());
 $app->register(new \Speedwork\Cache\CacheServiceProvider());
-$app->register(new \Speedwork\Turbo\TurboServiceProvider());
 $app->register(new \App\AppServiceProvider());
 
 /*
@@ -48,13 +47,10 @@ $app->register(new \App\AppServiceProvider());
 |
 */
 
-$kernel = new Speedwork\Core\Http\Kernel($app);
+$kernel = new App\Http\Kernel($app);
 
 $request  = Speedwork\Core\Http\Request::createFromGlobals();
-$response = new Speedwork\Core\Http\Response();
-
-$response = $kernel->handle($request, $response);
-$response->send();
+$response = $kernel->handle($request)->send();
 
 /*
 |--------------------------------------------------------------------------

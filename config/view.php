@@ -72,8 +72,8 @@ return [
     |
     */
     'extensions' => [
-        'twig',
         'tpl',
+        'twig',
     ],
 
     /*

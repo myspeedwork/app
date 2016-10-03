@@ -7,31 +7,20 @@
         "name": "sankar",
         "email": "sankar.suda@gmail.com"
     }],
+    "repositories" : [
+        {
+            "type" : "vcs",
+            "url" : "D:\\xampp\\htdocs\\laravel-spark-google2fa"
+        }
+    ],
     "require": {
         "php": ">=5.6",
-        "speedwork/installer": "^1.0",
-        "speedwork/container": "^1.0",
-        "speedwork/core": "^1.0",
-        "speedwork/util": "^1.0",
-        "speedwork/config": "^1.0",
-        "speedwork/view": "^1.0",
-        "speedwork/provider": "^1.0",
-        "speedwork/filesystem": "^1.0",
-        "speedwork/console": "^1.0",
-        "speedwork/cache": "^1.0",
-        "speedwork/helpers": "^1.0",
-        "speedwork/database": "^1.0",
-        "symfony/event-dispatcher": "^3.1",
-        "symfony/http-foundation": "^3.1",
-        "symfony/http-kernel": "^3.1",
+        "speedwork/framework" : "dev-master",
+        "turbophp/speedwork": "dev-master",
         "filp/whoops": "^2.1",
-        "phpmailer/phpmailer": "^5.2",
         "smarty/smarty": "^3.1",
         "twig/twig": "^1.24",
-        "monolog/monolog": "^1.21",
-        "kriswallsmith/assetic": "^1.3",
-        "natxet/CssMin": "^3.0",
-        "mrclay/minify": "^2.3"
+        "eusebiu/laravel-spark": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.5",
@@ -52,15 +41,10 @@
     },
     "autoload": {
         "psr-4": {
-            "System\\": "system/"
-        },
-        "classmap" : ["AppServiceProvider.php"]
+            "App\\": "app/"
+        }
     },
     "minimum-stability": "dev",
-    "prefer-stable": true,
-    "config": {
-        "preferred-install": "dist"
-    },
     "extra": {
         "branch-alias": {
             "dev-master": "1.0.x-dev"

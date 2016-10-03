@@ -1,11 +1,11 @@
 {
-  "name": "speedwork/app",
-  "version": "v1.0.0",
-  "description": "Web application dependencies",
-  "dependencies": {
-      "nprogress":"~0.2.0",
-      "animate.css":"~3.4.0",
-      "jquery":"~2.1.4",
-      "bootstrap":"~3.3.5"
-  }
+    "name": "speedwork.app",
+    "version": "v1.0.0",
+    "description": "Web application dependencies",
+    "dependencies": {
+        "jquery": "~2.1.4",
+        "bootstrap": "~3.3.5",
+        "nprogress": "~0.2.0",
+        "animate.css": "~3.4.0"
+    }
 }

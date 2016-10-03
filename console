@@ -23,7 +23,7 @@ $app = require __DIR__.'/app.php';
 |
 */
 $app->register(new \Speedwork\Console\ConsoleServiceProvider());
-$app->register(new \Speedwork\Database\Migration\MigrationServiceProvider());
+// $app->register(new \Speedwork\Database\Migration\MigrationServiceProvider());
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +36,7 @@ $app->register(new \Speedwork\Database\Migration\MigrationServiceProvider());
 |
 */
 
-$kernel = new Speedwork\Console\Kernel($app);
+$kernel = new App\Console\Kernel($app);
 $input  = new Symfony\Component\Console\Input\ArgvInput();
 $output = new Symfony\Component\Console\Output\ConsoleOutput();
 

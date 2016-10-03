@@ -78,27 +78,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Database Helpers
-    |--------------------------------------------------------------------------
-    |
-    | Helpers to change the query or data before and after process.
-    | Helps to log the data or queries for activity or stop execution of query
-    | Accepts array of helpers
-    |
-    | Find : Before and after select query
-    | Save : Before saving the data into database
-    | Update : Before updating the data
-    | Delete : Before delete
-    */
-    'helpers' => [
-        'find'   => ['find'],
-        'save'   => ['save'],
-        'delete' => ['delete'],
-        'update' => ['update'],
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
     | Tables configuration
     |--------------------------------------------------------------------------
     |
@@ -118,6 +97,18 @@ return [
         'save'   => [],
         'delete' => [],
         'update' => [],
+    ],
+
+    /*
+     |----------------------------------------------------------------------------
+     | Migration locations
+     |----------------------------------------------------------------------------
+     |
+     | You can setup the extra locations to look for migrations.
+     | storage/database/migrations will be included defaultly.
+     */
+    'migrations' => [
+
     ],
 
 ];

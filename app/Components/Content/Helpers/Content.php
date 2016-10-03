@@ -9,7 +9,7 @@
  * file that was distributed with this source code
  */
 
-namespace System\Components\Content\Helpers;
+namespace App\Components\Content\Helpers;
 
 use Speedwork\Core\Helper;
 use Speedwork\Util\Utility;

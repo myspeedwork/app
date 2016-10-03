@@ -28,24 +28,13 @@ class AppServiceProvider extends ServiceProvider implements BootableInterface
 
     private function loadForWeb($app)
     {
-        $app['resolver']->helper('events')->attach();
         $app['resolver']->helper('metainfo')->index();
 
-        $components = $app['config']->get('app.components');
-        if (empty($components)) {
-            $components = [
-                '' => 'content.welcome',
-            ];
-        }
+        $components = [
+            '' => 'content.welcome',
+        ];
 
         $app['view.engine']->assign('component', $components[$app['option']]);
-
-        $app['resolver']->widget('speedwork.jquery');
-        $app['resolver']->widget('nprogress');
-        $app['resolver']->widget('bootstrap');
-        $app['resolver']->widget('speedwork');
-        $app['resolver']->widget('noty');
-        $app['resolver']->widget('qtip');
 
         $config = $app['config']->get('app');
 
