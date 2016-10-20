@@ -6,6 +6,7 @@
         "jquery": "~2.1.4",
         "bootstrap": "~3.3.5",
         "nprogress": "~0.2.0",
-        "animate.css": "~3.4.0"
+        "animate.css": "~3.4.0",
+        "jquery-ui" : "~1.11.4"
     }
 }

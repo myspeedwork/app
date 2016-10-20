@@ -13,9 +13,11 @@ namespace App;
 
 use Speedwork\Container\BootableInterface;
 use Speedwork\Container\Container;
+use Speedwork\Container\EventListenerInterface;
 use Speedwork\Container\ServiceProvider;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
-class AppServiceProvider extends ServiceProvider implements BootableInterface
+class AppServiceProvider extends ServiceProvider implements BootableInterface, EventListenerInterface
 {
     public function register(Container $app)
     {
@@ -28,8 +30,6 @@ class AppServiceProvider extends ServiceProvider implements BootableInterface
 
     private function loadForWeb($app)
     {
-        $app['resolver']->helper('metainfo')->index();
-
         $components = [
             '' => 'content.welcome',
         ];
@@ -67,5 +67,10 @@ class AppServiceProvider extends ServiceProvider implements BootableInterface
         $noty = $this->app['resolver']->helper('notify.noty');
         $this->set('noty', $noty);
         $this->assign('noty_unread', $noty->unreadCount());
+    }
+
+    public function subscribe(Container $app, EventDispatcherInterface $dispatcher)
+    {
+        $dispatcher->addSubscriber($app['database.request.listener']);
     }
 }

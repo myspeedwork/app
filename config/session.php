@@ -10,5 +10,10 @@
  */
 
 return [
-    'default_locale' => 'en',
+    'locale'  => 'en',
+    'options' => [
+        'name'            => 'SPEEDWORK',
+        'cookie_httponly' => true,
+        'cookie_lifetime' => 1440,
+    ],
 ];

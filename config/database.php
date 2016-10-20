@@ -83,10 +83,10 @@ return [
     |
     | Use this configuration to add user_id to below tables in query process
     */
-   'tables' => [
+    'tables' => [
         'default' => [
             'users_api'            => 'user_id',
-            'mod_notifications'    => 'user_id',
+            'users_online'         => 'user_id',
             'user_login_history'   => 'user_id',
             'user_options'         => 'user_id',
             'whitelist_domains'    => 'user_id',

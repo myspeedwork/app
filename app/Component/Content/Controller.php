@@ -9,7 +9,7 @@
  * file that was distributed with this source code
  */
 
-namespace App\Components\Content;
+namespace App\Component\Content;
 
 use Speedwork\Core\Controller as BaseController;
 
@@ -20,7 +20,7 @@ class Controller extends BaseController
 {
     public function index()
     {
-        $id = $this->get['id'];
+        $id = $this->query('id');
 
         $row = $this->model->getContent($id);
 
@@ -29,7 +29,7 @@ class Controller extends BaseController
         $row['post_content'] = $modifier->index($row['post_content']);
         $row['meta']         = json_decode($row['meta'], true);
 
-        $this->get('template')->setTitle($row['post_title']);
+        $this->get('template')->setMeta('title', $row['post_title']);
 
         return [
             'row' => $row,
@@ -38,5 +38,8 @@ class Controller extends BaseController
 
     public function welcome()
     {
+        $this->get('template')->setTitle('Welcome to '.$this->config('app.name'));
+        $this->get('template')->setDescn('Let\'s start together to build awsome applications.');
+        $this->get('template')->setKeywords('speedwork, framework');
     }
 }

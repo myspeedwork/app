@@ -41,20 +41,11 @@ if (file_exists($loader = APP.'vendor'.DS.'autoload.php')) {
 |
 */
 
-$compiledPath = APP.'storage/cache/compiled.php';
+$compiledPath = APP.'storage'.DS.'cache'.DS.'compiled.php';
 
 if (file_exists($compiledPath)) {
     include $compiledPath;
 }
-
-/*
- |--------------------------------------------------------------------------
- | Set default security headers
- |--------------------------------------------------------------------------
- */
-header('Server: ');
-header('X-Content-Type-Options: nosniff');
-header('X-Powered-By: ');
 
 /*
 |--------------------------------------------------------------------------

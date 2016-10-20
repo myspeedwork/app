@@ -51,7 +51,7 @@ return [
     'grants' => [
         'public' => [
             'include' => [
-                'home:**',
+                //'home:**',
                 'content:**',
                 'members:register:*',
             ],
@@ -66,7 +66,7 @@ return [
      | Contains an array of settings to use for members configuration.
      |
      | account.enable_online_registration - User can register using form in front end
-     | account.default_user_group - Newly created users will be assigned to this group by default
+     | account.default_user_role - Newly created users will be assigned to this group by default
      | account.activation - user must activate his account to login
      | account.email_activation - enable users activate account by clicking the link sent ot his email
      | account.sms_activation - user can activate his account by proving the activation key sent to this mobile
@@ -77,7 +77,7 @@ return [
      */
     'account' => [
         'enable_online_registration' => true,
-        'default_user_role'          => 5,
+        'default_user_role'          => null,
         'auto_increment_userid'      => false,
         'activation'                 => true,
         'sms_activation'             => false,
@@ -97,9 +97,9 @@ return [
          |
          */
         'social' => [
-            'enable'  => true,
+            'enable'  => false,
             'publish' => false,
-            'login'   => true,
+            'login'   => false,
         ],
         /*
          |------------------------------------------------------------------
@@ -113,6 +113,7 @@ return [
             'username' => "/^[a-zA-Z0-9\.\-_]{6,25}$/",
             'email'    => "/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix",
             'mobile'   => '/[789][0-9]{9}/',
+            'password' => "^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$",
         ],
         /*
          |------------------------------------------------------------------
@@ -123,8 +124,8 @@ return [
          | onlogout: Which page user should redirect to after logout (default: home)
          | guest: Which guest try access the page which requires permission
          */
-        'onlogin'  => 'me',
-        'onlogout' => '',
-        'guest'    => 'login',
+        'onlogin'  => 'members/me',
+        'onlogout' => '/',
+        'guest'    => 'members/login',
     ],
 ];

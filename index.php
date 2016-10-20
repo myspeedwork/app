@@ -52,6 +52,7 @@ $kernel = new App\Http\Kernel($app);
 $request  = Speedwork\Core\Http\Request::createFromGlobals();
 $response = $kernel->handle($request)->send();
 
+
 /*
 |--------------------------------------------------------------------------
 | Shutdown The Application

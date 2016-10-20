@@ -27,7 +27,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'environment' => env('APP_ENVIRONMENT', 'local'),
+    'env' => env('APP_ENV', 'dev'),
 
     /*
     |--------------------------------------------------------------------------
@@ -44,16 +44,25 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Application URL
+    | Application Console URL
     |--------------------------------------------------------------------------
     |
     | This URL is used by the console to properly generate URLs when using
-    | the Artisan command line tool. You should set this to the root of
-    | your application so that it is used when running Artisan tasks.
+    | the command line tool. You should set this to the root of
+    | your application so that it is used when running tasks.
     |
     */
 
     'cliurl' => 'http://localhost/',
+
+    /*
+     |----------------------------------------------------------------------------
+     | Application URL
+     |----------------------------------------------------------------------------
+     |
+     | Configure the app url, if blank system will identify.
+     */
+    'url' => env('APP_URL', ''),
 
     /*
     |--------------------------------------------------------------------------
@@ -66,7 +75,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => env('APP_TIMEZONE', ''),
 
     /*
     |--------------------------------------------------------------------------
@@ -79,7 +88,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => env('APP_LOCALE', 'en'),
 
     /*
     |--------------------------------------------------------------------------
@@ -179,8 +188,8 @@ return [
      | Example : "og:title::property" => 'Awsome Speedwork'
      */
     'meta' => [
-        'title'       => '',
-        'keywords'    => '',
+        'title'       => 'Welcome to Speedwork',
+        'keywords'    => 'framework, Speedwork',
         'description' => '',
     ],
 
@@ -206,6 +215,24 @@ return [
     ],
 
     /*
+     |----------------------------------------------------------------------------
+     | Put the application into maintenance mode
+     |----------------------------------------------------------------------------
+     |
+     | Enable to put application into maintenance mode.
+     | offline.(tpl|twig) template will be used to display message
+     |
+     | enable: put into maintenance mode
+     | message : The message for the maintenance mode.
+     | retry : The number of seconds after which the request may be retried.
+     */
+    'offline' => [
+        'enable'  => env('APP_OFFLINE', false),
+        'message' => 'We are currently updating our server.',
+        'retry'   => 0,
+    ],
+
+    /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
     |--------------------------------------------------------------------------
@@ -217,7 +244,5 @@ return [
     */
 
     'providers' => [
-        \Turbo\Speedwork\TurboServiceProvider::class,
-        //'\\App\\AppServiceProvider',
     ],
 ];

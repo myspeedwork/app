@@ -5,7 +5,7 @@
     </head>
     <body class="ui-body--{if $option}{$option}{else}home{/if}">
         <center>
-        <speed:include type="component" />
+        <speed:include type="component" name="{$component}"/>
         </center>
         <speed:include type="footer" />
     </body>

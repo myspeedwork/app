@@ -17,9 +17,7 @@ return [
      |
      | This option convert index.php?option=content&view=welcome to content/welcome
      */
-    'seo' => [
-        'enable' => true,
-    ],
+    'seo' => true,
 
     /*
      |----------------------------------------------------------------------------
@@ -58,6 +56,22 @@ return [
             */
         ],
         'generate' => [],
+    ],
+
+    /*
+     |----------------------------------------------------------------------------
+     | Convert urls to https
+     |----------------------------------------------------------------------------
+     |
+     | Convert urls to https based on matched config
+     */
+    'ssl' => [
+        'enable' => false,
+        'config' => [
+            /*
+            | 'option:*' => true
+             */
+        ],
     ],
 
     /*

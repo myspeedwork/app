@@ -8,19 +8,18 @@
         <div id="container">
             <div id="dialog">
                 <header>
-                    <h1>Updating stage</h1>
+                    <h2>Updating stage</h2>
                 </header>
                 <div class="sb clearfix">
-                    <div class="span24">
-                        <p>{$config.offline.message"}</p>
-                    </div>
+                    <p>{speed config="app.offline.message"}</p>
+                    <p>Please try reloading the page in few minutes.</p>
                 </div>
             </div>
             <div class="vertical-helper"></div>
             <!-- dialog -->
         </div>
         <!-- container -->
-                {literal}
+        {literal}
         <style type="text/css">
         body {
         line-height: 18px;
@@ -48,6 +47,7 @@
         p {
         margin: 0 0 15px 0;
         color: #666;
+        font-weight: bold;
         }
         #container {
         height: 100%;
@@ -70,10 +70,7 @@
         border: none;
         border-bottom: 1px solid #ccc;
         border-right: 1px solid #ccc;
-        box-shadow: 0 0 10px rgba(0,0,0,0.2);
-        -moz-box-shadow: 0 0 10px rgba(0,0,0,0.2);
-        -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.2);
-        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        box-shadow: 0 0 5px rgba(0,0,0,0.2);
         border-radius: 3px;
         padding:10px;
         }
@@ -99,7 +96,7 @@
         padding-top: 15px;
         padding: 15px 20px;
         }
-        h1{ font-size:22px; font-weight:bold;}
+        h1{ font-size:20px; font-weight:bold;}
         </style>
         {/literal}
     </body>

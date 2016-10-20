@@ -38,6 +38,7 @@ return [
      |----------------------------------------------------------------------------
      |
      | You can create multiple email templates for different languages.
+     | Leave blank to use application locale
      */
     'locale' => 'en',
 
